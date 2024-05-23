@@ -14,9 +14,14 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
+
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
+      },
+      {
+        path: 'celulares',
+        loadChildren: () => import('./views/celulares/routes').then((m) => m.routes)
       },
       {
         path: 'theme',
@@ -53,7 +58,8 @@ export const routes: Routes = [
       {
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
-      }
+      },
+
     ]
   },
   {

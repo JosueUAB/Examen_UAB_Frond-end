@@ -10,15 +10,53 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
+  //! INDICE DE CELULARES */
+  {
+
+    name: 'Indice de celulares',
+    title: true,
+  },
+  {
+    name: 'celulares',
+    url: '/celulares',
+    iconComponent: { name: 'cil-star' },
+    children:   [
+      {
+        name:'stock',
+        url: '/celulares/stock',
+        icon:'nav-icon-bullet'
+      },
+      {
+        name:'clientes',
+        url: '/celulares/clientes',
+        icon:'nav-icon-bullet'
+      },
+      {
+        name:'ventas',
+        url: '/celulares/ventas',
+        icon:'nav-icon-bullet'
+      },
+      {
+        name:'Reportes',
+        url:'/celulares/reportes',
+        icon:'nav-icon-bullet'
+      },
+    ]
+  },
+  //*!FINAL DE CELULARES
+
   {
     title: true,
     name: 'Theme'
   },
+//--- celiular inicio
   {
     name: 'Colors',
     url: '/theme/colors',
     iconComponent: { name: 'cil-drop' }
   },
+
+  //--- celiular final
   {
     name: 'Typography',
     url: '/theme/typography',
@@ -29,6 +67,7 @@ export const navItems: INavData[] = [
     name: 'Components',
     title: true
   },
+
   {
     name: 'Base',
     url: '/base',
@@ -247,6 +286,7 @@ export const navItems: INavData[] = [
       text: 'NEW'
     }
   },
+
   {
     title: true,
     name: 'Extras'

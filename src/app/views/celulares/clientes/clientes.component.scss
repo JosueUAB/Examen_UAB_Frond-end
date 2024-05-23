@@ -1,0 +1,10 @@
+/* CSS para cambiar el color del texto e icono en estado de hover del primer botón */
+.btn-outline-isra:hover,
+.btn-outline-isra:focus {
+    color: #fff; /* Cambia el color del texto */
+}
+
+.btn-outline-isra:hover svg,
+.btn-outline-isra:focus svg {
+    fill: #fff; /* Cambia el color del icono */
+}

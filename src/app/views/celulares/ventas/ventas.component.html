@@ -1,0 +1,163 @@
+<c-row ngPreserveWhitespaces>
+  <c-col xs="12">
+
+    <c-card class="mb-4">
+      <br>
+      <h1 class="text-center">Realizar Venta por ID</h1><br>
+      <form action="">
+        <div class="container">
+          <div class="col-12">
+
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                  <div class="form-group row align-items-center">
+                      <label for="marca" class="col-sm-4 col-form-label">Celular ID</label>
+                      <div class="col-sm-6">
+                          <input type="text" id="marca" class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group row align-items-center">
+                      <label for="modelo" class="col-sm-4 col-form-label">Cliente ID</label>
+                      <div class="col-sm-6">
+                          <input type="text" id="modelo" class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group row align-items-center">
+                    <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="modelo" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+
+          </div>
+        </div><br><br>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
+            Realizar Venta
+          </button>
+
+        </div>
+      </form>
+      <br>
+      <h1 class="text-center">Realizar Venta por IMEI & CI</h1><br>
+      <form action="">
+        <div class="container">
+          <div class="col-12">
+
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                  <div class="form-group row align-items-center">
+                      <label for="marca" class="col-sm-4 col-form-label">IMEI</label>
+                      <div class="col-sm-6">
+                          <input type="text" id="marca" class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group row align-items-center">
+                      <label for="modelo" class="col-sm-4 col-form-label">CI</label>
+                      <div class="col-sm-6">
+                          <input type="text" id="modelo" class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group row align-items-center">
+                    <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="modelo" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+
+          </div>
+        </div><br><br>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
+            Realizar Venta
+          </button>
+
+        </div>
+      </form>
+
+
+
+
+        <br>
+        <h1 class="text-center">lista de Celulares</h1>
+        <div class="container ">
+          <div class="row justify-content-center">
+            <div class="col-11">
+              <table [hover]="true" cTable>
+                <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Marca</th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">rom</th>
+                  <th scope="col">color</th>
+                  <th scope="col">ram</th>
+                  <th scope="col">bateria</th>
+                  <th scope="col">precio</th>
+                  <th scope="col">descuento</th>
+                  <th scope="col">imei</th>
+                  <th scope="col">acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>samsung</td>
+                  <td>j7</td>
+                  <td>rojo</td>
+                  <td>8gb</td>
+                  <td>3gb</td>
+                  <td>5000</td>
+                  <td>250</td>
+                  <td>10%</td>
+                  <td>3515755685</td>
+                  <td >
+                    <button cButton color="warning" variant="outline">
+                      <svg cIcon class="me-2" name="cil-pencil"></svg>
+                    </button>
+                    <button cButton color="danger" variant="outline" class="btn-outline-isra">
+                      <svg cIcon class="me-2" name="cil-trash" ></svg>
+                    </button>
+                </td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>&#64;fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colSpan="2">Larry the Bird</td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+    </c-card>
+  </c-col>
+
+</c-row>
+
