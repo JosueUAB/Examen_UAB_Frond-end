@@ -4,7 +4,7 @@
     <c-card class="mb-4">
       <br>
       <h1 class="text-center">Stock de Celulares</h1>
-      <form action="">
+      <form action="" (ngSubmit)="crearCelular()" [formGroup]="validarFormulario"  id="validarFormulario">
         <div class="container">
           <div class="col-12">
 
@@ -14,7 +14,11 @@
                   <div class="form-group row align-items-center">
                       <label for="marca" class="col-sm-4 col-form-label">Marca</label>
                       <div class="col-sm-6">
-                          <input type="text" id="marca" class="form-control">
+                          <input type="text" id="marca" class="form-control" name="marca"fo
+                          formControlName="marca"
+
+
+                          >
                       </div>
                   </div>
               </div>
@@ -22,7 +26,10 @@
                   <div class="form-group row align-items-center">
                       <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
                       <div class="col-sm-6">
-                          <input type="text" id="modelo" class="form-control">
+                          <input type="text" id="modelo" class="form-control" name="modelo"fo
+                          formControlName="modelo"
+
+                          >
                       </div>
                   </div>
               </div>
@@ -30,7 +37,10 @@
                   <div class="form-group row align-items-center">
                       <label for="rom" class="col-sm-4 col-form-label">ROM</label>
                       <div class="col-sm-6">
-                          <input type="text" id="rom" class="form-control">
+                          <input type="text" id="almacenamiento" class="form-control" name="almacenamiento"fo
+                          formControlName="almacenamiento"
+
+                          >
                       </div>
                   </div>
               </div>
@@ -42,7 +52,10 @@
                 <div class="form-group row align-items-center">
                     <label for="marca" class="col-sm-4 col-form-label">Color</label>
                     <div class="col-sm-6">
-                        <input type="text" id="marca" class="form-control">
+                        <input type="text" id="color" class="form-control" name="color"fo
+                        formControlName="color"
+
+                        >
                     </div>
                 </div>
             </div>
@@ -50,7 +63,10 @@
                 <div class="form-group row align-items-center">
                     <label for="modelo" class="col-sm-4 col-form-label">RAM</label>
                     <div class="col-sm-6">
-                        <input type="text" id="modelo" class="form-control">
+                        <input type="text" id="ram" class="form-control" name="ram"fo
+                        formControlName="ram"
+
+                        >
                     </div>
                 </div>
             </div>
@@ -58,7 +74,10 @@
                 <div class="form-group row align-items-center">
                     <label for="rom" class="col-sm-4 col-form-label">Bateria</label>
                     <div class="col-sm-6">
-                        <input type="number" id="rom" class="form-control">
+                        <input type="number" id="bateria" class="form-control" name="bateria"fo
+                        formControlName="bateria"
+
+                        >
                     </div>
                 </div>
             </div>
@@ -70,7 +89,10 @@
               <div class="form-group row align-items-center">
                   <label for="marca" class="col-sm-4 col-form-label">Precio</label>
                   <div class="col-sm-6">
-                      <input type="number" id="marca" class="form-control">
+                      <input type="number" id="precio" class="form-control" name="precio"fo
+                      formControlName="precio"
+
+                      >
                   </div>
               </div>
           </div>
@@ -78,7 +100,10 @@
               <div class="form-group row align-items-center">
                   <label for="modelo" class="col-sm-4 col-form-label">descuento</label>
                   <div class="col-sm-6">
-                      <input type="text" id="modelo" class="form-control">
+                      <input type="text" id="descuento" class="form-control" name="descuento"fo
+                      formControlName="descuento"
+
+                      >
                   </div>
               </div>
           </div>
@@ -86,7 +111,10 @@
               <div class="form-group row align-items-center">
                   <label for="rom" class="col-sm-4 col-form-label">imei</label>
                   <div class="col-sm-6">
-                      <input type="text" id="rom" class="form-control">
+                      <input type="text" id="imei" class="form-control" name="imei"fo
+                      formControlName="imei"
+
+                      >
                   </div>
               </div>
           </div>
@@ -95,8 +123,9 @@
         </div><br><br>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
-            Guardar
+          <button type="submit" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"
+          ><svg cIcon class="me-2" name="cil-save"></svg>
+
           </button>
 
         </div>
@@ -127,37 +156,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>samsung</td>
-                  <td>j7</td>
-                  <td>rojo</td>
-                  <td>8gb</td>
-                  <td>3gb</td>
-                  <td>5000</td>
-                  <td>250</td>
-                  <td>10%</td>
-                  <td>3515755685</td>
-                  <td >
-                    <button cButton color="warning" variant="outline">
-                      <svg cIcon class="me-2" name="cil-pencil"></svg>
-                    </button>
-                    <button cButton color="danger" variant="outline" class="btn-outline-isra">
-                      <svg cIcon class="me-2" name="cil-trash" ></svg>
-                    </button>
-                </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>&#64;fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colSpan="2">Larry the Bird</td>
-                  <td></td>
-                </tr>
+                  @for(r of listadeCelulares; track r;){
+                    <tr>
+                      <th scope="row">{{$index+1}}</th>
+                      <td>{{r.marca}}</td>
+                      <td>{{r.modelo}}</td>
+                      <td>{{r.ram}}</td>
+                      <td>{{r.color}}</td>
+                      <td>{{r.ram}}</td>
+                      <td>{{r.bateria}}</td>
+                      <td>{{r.precio}}</td>
+                      <td>{{r.descuento}}</td>
+                      <td>{{r.imei}}</td>
+                      <td >
+                        <button (click)="editarCelular(r)" cButton color="warning" variant="outline">
+                          <svg cIcon class="me-2" name="cil-pencil"></svg>
+                        </button>
+                        <button (click)="eliminarCelular(r)" cButton color="danger" variant="outline" class="btn-outline-isra"
+                          >
+                          <svg cIcon class="me-2" name="cil-trash" ></svg>
+                        </button>
+                    </td>
+                  </tr>
+                  }
+
                 </tbody>
               </table>
 
