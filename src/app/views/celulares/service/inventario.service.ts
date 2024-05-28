@@ -9,6 +9,9 @@ const url ='http://localhost:3000'
 @Injectable({
   providedIn: 'root'
 })
+
+
+
 export class InventarioService {
 
 
@@ -33,9 +36,16 @@ export class InventarioService {
    actualizarCelular(id: string, celular: Celulares): Observable<Celulares> {
     return this.http.put<Celulares>(`${url}/lista/${id}`, celular);
   }
+
+
   //eliminar un celular
-  eliminarCelular(idCelular: string){
-    return this.http.delete<Celulares>(`${url}/lista/ ${idCelular}`);
+  eliminarcelular(id:string){
+    return this.http.delete(`${url}/lista/${id}`);
+  }
+
+
+  detalleCelular(id:string){
+    return this.http.get(`${url}/lista/${id}`);
   }
 
 }

@@ -4,7 +4,7 @@
     <c-card class="mb-4">
       <br>
       <h1 class="text-center">Registro de Clientes</h1>
-      <form action="">
+      <form action="" [formGroup]="validarFormulario" id="validarFormulario"  >
         <div class="container">
           <div class="col-12">
 
@@ -14,7 +14,9 @@
                   <div class="form-group row align-items-center">
                       <label for="marca" class="col-sm-4 col-form-label">CI</label>
                       <div class="col-sm-6">
-                          <input type="number" id="CI" class="form-control">
+                          <input type="number" id="CI" class="form-control"
+                          name="CI"
+                          formControlName="CI">
                       </div>
                   </div>
               </div>
@@ -22,7 +24,9 @@
                   <div class="form-group row align-items-center">
                       <label for="modelo" class="col-sm-4 col-form-label">Nombres</label>
                       <div class="col-sm-6">
-                          <input type="text" id="Nombres" class="form-control">
+                          <input type="text" id="Nombre" class="form-control"
+                          name="Nombre"
+                          formControlName="Nombre">
                       </div>
                   </div>
               </div>
@@ -34,7 +38,9 @@
                 <div class="form-group row align-items-center">
                     <label for="marca" class="col-sm-4 col-form-label">Apellidos</label>
                     <div class="col-sm-6">
-                        <input type="text" id="Apellidos" class="form-control">
+                        <input type="text" id="Apellido" class="form-control"
+                        name="Apellido"
+                          formControlName="Apellido">
                     </div>
                 </div>
             </div>
@@ -42,7 +48,9 @@
                 <div class="form-group row align-items-center">
                     <label for="modelo" class="col-sm-4 col-form-label">Correo</label>
                     <div class="col-sm-6">
-                        <input type="email" id="Correo" class="form-control">
+                        <input type="email" id="Correo" class="form-control"
+                        name="Correo"
+                          formControlName="Correo">
                     </div>
                 </div>
             </div>
@@ -52,9 +60,11 @@
         <div class="row justify-content-center">
           <div class="col-md-4">
               <div class="form-group row align-items-center">
-                  <label for="marca" class="col-sm-4 col-form-label">Nº Celula</label>
+                  <label for="marca" class="col-sm-4 col-form-label">Nº Celular</label>
                   <div class="col-sm-6">
-                      <input type="number" id="marca" class="form-control">
+                      <input type="number" id="telefono" class="form-control"
+                      name="telefono"
+                      formControlName="telefono">
                   </div>
               </div>
           </div>
@@ -65,7 +75,7 @@
         </div><br><br>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
+          <button (click)="guardarOEditarCliente()" type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
             Guardar
           </button>
         </div>
@@ -92,34 +102,28 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>samsung</td>
-                  <td>j7</td>
-                  <td>rojo</td>
-                  <td>8gb</td>
-                  <td>3gb</td>
-                  <td >
-                    <button cButton color="warning" variant="outline">
-                      <svg cIcon class="me-2" name="cil-pencil"></svg>
-                    </button>
-                    <button cButton color="danger" variant="outline" class="btn-outline-isra">
-                      <svg cIcon class="me-2" name="cil-trash">
+                  @for(lista of listadeClientes;track lista){
+                    <tr>
+                      <th scope="row">{{$index+1}}</th>
+                      <td>{{lista.CI}}</td>
+                      <td>{{lista.Nombre}}</td>
+                      <td>{{lista.Apellido}}</td>
+                      <td>{{lista.Correo}}</td>
+                      <td>{{lista.telefono}}</td>
 
-                      </svg></button>
-                </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>&#64;fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colSpan="2">Larry the Bird</td>
-                  <td></td>
-                </tr>
+                      <td >
+                        <button (click)="editarCliente(lista,lista._id)" cButton color="warning" variant="outline">
+                          <svg cIcon class="me-2" name="cil-pencil"></svg>
+                        </button>
+                        <button (click)="eliminarCliente(lista._id)" cButton color="danger" variant="outline" class="btn-outline-isra"
+                          >
+                          <svg cIcon class="me-2" name="cil-trash" ></svg>
+                        </button>
+                    </td>
+                    </tr>
+                  }
+
+
                 </tbody>
               </table>
 

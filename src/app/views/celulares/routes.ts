@@ -20,6 +20,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'editstock',
+        loadComponent: () => import('./detallestock/detallestock.component').then(m => m.DetallestockComponent),
+        data: {
+          title: 'stock'
+        }
+      },
+      {
         path: 'clientes',
         loadComponent: () => import('./clientes/clientes.component').then(m => m.ClientesComponent),
         data: {

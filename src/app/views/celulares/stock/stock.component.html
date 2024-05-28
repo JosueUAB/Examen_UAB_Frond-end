@@ -4,7 +4,7 @@
     <c-card class="mb-4">
       <br>
       <h1 class="text-center">Stock de Celulares</h1>
-      <form action="" (ngSubmit)="crearCelular()" [formGroup]="validarFormulario"  id="validarFormulario">
+      <form action="" [formGroup]="validarFormulario"  id="validarFormulario" >
         <div class="container">
           <div class="col-12">
 
@@ -14,7 +14,7 @@
                   <div class="form-group row align-items-center">
                       <label for="marca" class="col-sm-4 col-form-label">Marca</label>
                       <div class="col-sm-6">
-                          <input type="text" id="marca" class="form-control" name="marca"fo
+                          <input type="text" id="marca" class="form-control" name="marca"
                           formControlName="marca"
 
 
@@ -123,7 +123,7 @@
         </div><br><br>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"
+          <button (click)="guardarOEditarCelular()" type="submit" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"
           ><svg cIcon class="me-2" name="cil-save"></svg>
 
           </button>
@@ -169,10 +169,10 @@
                       <td>{{r.descuento}}</td>
                       <td>{{r.imei}}</td>
                       <td >
-                        <button (click)="editarCelular(r)" cButton color="warning" variant="outline">
+                        <button (click)="editarCelular(r,r._id)" cButton color="warning" variant="outline">
                           <svg cIcon class="me-2" name="cil-pencil"></svg>
                         </button>
-                        <button (click)="eliminarCelular(r)" cButton color="danger" variant="outline" class="btn-outline-isra"
+                        <button (click)="eliminarCelular(r._id)" cButton color="danger" variant="outline" class="btn-outline-isra"
                           >
                           <svg cIcon class="me-2" name="cil-trash" ></svg>
                         </button>
