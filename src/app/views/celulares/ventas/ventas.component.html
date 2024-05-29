@@ -4,44 +4,54 @@
     <c-card class="mb-4">
       <br>
       <h1 class="text-center">Realizar Venta por ID</h1><br>
-      <form action="">
-        <div class="container">
+      <form action="" [formGroup]="validarFormulario" id="validarFormulario" >
+       <div class="container">
           <div class="col-12">
 
             <div class="row justify-content-center">
               <div class="col-md-4">
                   <div class="form-group row align-items-center">
-                      <label for="marca" class="col-sm-4 col-form-label">Celular ID</label>
+                      <label for="marca" class="col-sm-4 col-form-label">Cliente ID</label>
                       <div class="col-sm-6">
-                          <input type="text" id="marca" class="form-control">
+                          <input type="text" id="clienteId" class="form-control"
+                          name="clienteId"
+                          formControlName="clienteId">
                       </div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group row align-items-center">
-                      <label for="modelo" class="col-sm-4 col-form-label">Cliente ID</label>
+                      <label for="modelo" class="col-sm-4 col-form-label">Celular ID</label>
                       <div class="col-sm-6">
-                          <input type="text" id="modelo" class="form-control">
+                          <input type="text" id="celularId" class="form-control"
+                          name="celularId"
+                          formControlName="celularId">
                       </div>
                   </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group row align-items-center">
-                    <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
+                    <label for="modelo" class="col-sm-4 col-form-label">Metodo de Pago</label>
                     <div class="col-sm-6">
-                        <input type="text" id="modelo" class="form-control">
+                        <select aria-label="Default select example" cSelect id="metododePago" class="form-control"
+                          name="metododePago"
+                        formControlName="metododePago"> >
+                          <option></option>
+                          <option value="efectivo">efectivo</option>
+                          <option value="QR transferencia">QR transferencia</option>
+                          <option value="tarjeta">tarjeta</option>
+                        </select>
                     </div>
                 </div>
             </div>
+            </div>
 
           </div>
-
-
           </div>
-        </div><br><br>
+        <br><br>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
+          <button (click)="crearVenta()" type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
             Realizar Venta
           </button>
 
@@ -58,7 +68,7 @@
                   <div class="form-group row align-items-center">
                       <label for="marca" class="col-sm-4 col-form-label">IMEI</label>
                       <div class="col-sm-6">
-                          <input type="text" id="marca" class="form-control">
+                          <input type="text" id="imei" class="form-control">
                       </div>
                   </div>
               </div>
@@ -66,7 +76,7 @@
                   <div class="form-group row align-items-center">
                       <label for="modelo" class="col-sm-4 col-form-label">CI</label>
                       <div class="col-sm-6">
-                          <input type="text" id="modelo" class="form-control">
+                          <input type="text" id="CI" class="form-control">
                       </div>
                   </div>
               </div>
@@ -105,50 +115,44 @@
                 <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Marca</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">CI</th>
                   <th scope="col">Modelo</th>
-                  <th scope="col">rom</th>
-                  <th scope="col">color</th>
-                  <th scope="col">ram</th>
-                  <th scope="col">bateria</th>
+                  <th scope="col">Imei</th>
                   <th scope="col">precio</th>
-                  <th scope="col">descuento</th>
-                  <th scope="col">imei</th>
+                  <th scope="col">descuento %</th>
+                  <th scope="col">descuento BS</th>
+                  <th scope="col">Tipo de pago</th>
+                  <th scope="col">total</th>
                   <th scope="col">acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>samsung</td>
-                  <td>j7</td>
-                  <td>rojo</td>
-                  <td>8gb</td>
-                  <td>3gb</td>
-                  <td>5000</td>
-                  <td>250</td>
-                  <td>10%</td>
-                  <td>3515755685</td>
-                  <td >
-                    <button cButton color="warning" variant="outline">
-                      <svg cIcon class="me-2" name="cil-pencil"></svg>
-                    </button>
-                    <button cButton color="danger" variant="outline" class="btn-outline-isra">
-                      <svg cIcon class="me-2" name="cil-trash" ></svg>
-                    </button>
-                </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>&#64;fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colSpan="2">Larry the Bird</td>
-                  <td></td>
-                </tr>
+                  @for (lista of listadeVentas; track lista) {
+                    <tr>
+                      <th scope="row">{{$index+1}}</th>
+                      <td>{{lista.cliente.Nombre}}</td>
+                      <td>{{lista.cliente.Apellido}}</td>
+                      <td>{{lista.cliente.CI}}</td>
+                      <td>{{lista.celular.marca}} {{lista.celular.modelo}}</td>
+                      <td>{{lista.celular.imei}}</td>
+                      <td>{{lista.celular.precio}} Bs</td>
+                      <td>{{lista.celular.descuento}}</td>
+                      <td>{{lista.descuentoAplicado}}</td>
+                      <td>{{lista.metododePago}}</td>
+                      <td>{{lista.total}}</td>
+                      <td >
+                        <button (click)="verVenta(lista,lista._id)" cButton color="warning" variant="outline">
+                          <svg cIcon class="me-2" name="cil-pencil"></svg>
+                        </button>
+                        <button (click)="eliminarVenta(lista._id)" cButton color="danger" variant="outline" class="btn-outline-isra">
+                          <svg cIcon class="me-2" name="cil-trash" ></svg>
+                        </button>
+                    </td>
+                    </tr>
+                  }
+
                 </tbody>
               </table>
 
