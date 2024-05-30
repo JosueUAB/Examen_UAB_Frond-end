@@ -23,7 +23,6 @@ import { RowComponent,
   TableActiveDirective
 } from '@coreui/angular';
 //* importacion de sweet alert2
-import 'sweetalert2/src/sweetalert2.scss';
 import Swal from 'sweetalert2';
 import { Ventas} from '../models/ventas.model';
 import { obtenerVentas } from '../interface/obtenerVentas.interfaces';

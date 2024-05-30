@@ -19,7 +19,6 @@ import { RowComponent,
   TableActiveDirective
 } from '@coreui/angular';
 //* importacion de sweet alert2
-import 'sweetalert2/src/sweetalert2.scss';
 import Swal from 'sweetalert2';
 import { Clientes } from '../models/clientes.model';
 import { obtenerClientes } from '../interface/obtenerClientes.interfaces';
