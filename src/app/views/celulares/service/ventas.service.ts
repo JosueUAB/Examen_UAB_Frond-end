@@ -40,4 +40,19 @@ export class VentaService {
   eliminarVenta(id: string): Observable<any> {
     return this.http.delete(`${url}/ventas/${id}`);
   }
+  getTopClientesDescuentos(): Observable<any> {
+    return this.http.get<any>(`${url}/ventasx`);
+  }
+
+  getClientesFrecuentes(): Observable<any> {
+    return this.http.get<any>(`${url}/clientesfrecuentes`);
+  }
+  obtenerComprasPorUsuario(idUsuario: string): Observable<any> {
+    return this.http.get<any>(`${url}/filtrarporUsuario/${idUsuario}`);
+  }
+  crearVentaPorCIyIMEI(CI: number, IMEI: string, metododePago: string): Observable<any> {
+    const data = { CI, IMEI, metododePago }; // Incluimos el campo metododePago en los datos
+    return this.http.post<any>(`${url}/ventasx`, data);
+}
+
 }

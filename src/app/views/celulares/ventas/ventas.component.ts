@@ -4,6 +4,8 @@ import {ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, Validators} fr
 import { DocsExampleComponent } from '@docs-components/public-api';
 import { IconDirective } from '@coreui/icons-angular';
 import { VentaService } from '../service/ventas.service';
+import { InventarioService } from '../service/inventario.service';
+import { ClienteService } from '../service/clientes.service';
 import { RowComponent,
   ColComponent,
   TextColorDirective,
@@ -22,7 +24,11 @@ import { RowComponent,
 import 'sweetalert2/src/sweetalert2.scss';
 import Swal from 'sweetalert2';
 import { Ventas} from '../models/ventas.model';
+import { Celulares } from '../models/celulares.model';
+import { Clientes } from '../models/clientes.model';
+import { obtenerClientes } from '../interface/obtenerClientes.interfaces';
 import { obtenerVentas } from '../interface/obtenerVentas.interfaces';
+import { obtenerCelulares } from '../interface/obtenerCelulares.interfaces';
 @Component({
   selector: 'app-ventas',
   standalone: true,
@@ -63,14 +69,94 @@ export class VentasComponent {
     celularId: ['', ],
     metododePago:['',],
   });
+  validarFormularioVentaCIIMEI: FormGroup = this.fb.group({
+    CI: ['', Validators.required], // Suponiendo que este campo es requerido
+    IMEI: ['', Validators.required], // Suponiendo que este campo es requerido
+    metododePago: ['', Validators.required] // Campo de método de pago requerido
+});
   listadeVentas : any = [];
-
+  listadeClientes : any = [];
+  listadeCelulares : any = [];
   constructor(
     private fb: FormBuilder,
-    private ventaService: VentaService
+    private ventaService: VentaService,
+    private inventarioService:InventarioService,
+    private clienteService:ClienteService
   ) {
     this.getVentas();
+    this.getCelulares();
+    this.getClientes();
   }
+
+  getCelulares() {
+    this.cargando = true;
+    this.inventarioService.getCelulares()
+      .subscribe((resp: Celulares[]) => {
+        // Filtrar la lista de celulares para mostrar solo los que no están vendidos
+        this.listadeCelulares = resp.filter(celular => !celular.vendido);
+        console.log(this.listadeCelulares);
+        this.cargando = false;
+      }, (error) => {
+        console.error(error);
+      });
+  }
+  getClientes() {
+    this.cargando = true;
+    this.clienteService.getClientes()
+      .subscribe((resp: Clientes[]) => {
+        this.listadeClientes = resp;
+        console.log(this.listadeClientes);
+        this.cargando = false;
+      }, (error) => {
+        console.error(error);
+      });
+  }
+
+
+
+  crearVentaPorCIyIMEI() {
+    console.log('Iniciando proceso de creación de venta por CI y IMEI...');
+    console.log(this.validarFormularioVentaCIIMEI);
+    const CI = this.validarFormularioVentaCIIMEI.get('CI')?.value;
+    const IMEI = this.validarFormularioVentaCIIMEI.get('IMEI')?.value;
+    const metododePago = this.validarFormularioVentaCIIMEI.get('metododePago')?.value;
+    if (CI && IMEI && metododePago) { // Verificar si todos los campos necesarios están presentes
+        this.ventaService.crearVentaPorCIyIMEI(CI, IMEI, metododePago) // Pasar el método de pago al servicio
+            .subscribe(
+                (resp) => {
+                    console.log('Respuesta del servidor:', resp);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Venta Agregada",
+                        timer: 2000
+                    });
+                    console.log('Formulario reseteado');
+                    this.validarFormularioVentaCIIMEI.reset();
+                    console.log('Obteniendo ventas actualizadas...');
+                    this.getVentas();
+                },
+                (error) => {
+                    console.error('Error al crear la venta por CI y IMEI:', error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error al agregar la venta",
+                        text: error.error.msg || "Hubo un problema al agregar la venta. Por favor, inténtalo de nuevo.",
+                        timer: 2000
+                    });
+                }
+            );
+    } else {
+        console.error('Por favor, completa todos los campos.');
+        Swal.fire({
+            icon: "error",
+            title: "Campos incompletos",
+            text: "Por favor, completa todos los campos.",
+            timer: 2000
+        });
+    }
+}
+
+
 
   crearVenta() {
     console.log('Datos del formulario:', this.validarFormulario.value);
@@ -102,7 +188,7 @@ export class VentasComponent {
     this.ventaService.getVentas()
       .subscribe((resp: Ventas[]) => {
         this.listadeVentas = resp;
-        console.log(this.listadeVentas);
+       //console.log(this.listadeVentas);
         this.cargando = false;
       }, (error) => {
         console.error(error);
@@ -198,4 +284,9 @@ export class VentasComponent {
         }
       );
   }
+  filterCelulares(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+
+  }
+
 }

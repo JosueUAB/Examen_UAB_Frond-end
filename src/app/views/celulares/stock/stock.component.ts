@@ -103,7 +103,7 @@ listadeCelulares : any = [];
     })
 
    }
-
+/*
   getCelulares() {
     this.cargando=true;
 
@@ -117,7 +117,18 @@ listadeCelulares : any = [];
       console.error(error);
     })
   }
-
+*/
+getCelulares() {
+  this.cargando = true;
+  this.inventarioService.getCelulares()
+    .subscribe((resp: Celulares[]) => {
+      // Filtrar la lista de celulares para mostrar solo los que no están vendidos
+      this.listadeCelulares = resp.filter(celular => !celular.vendido);
+      this.cargando = false;
+    }, (error) => {
+      console.error(error);
+    });
+}
 
   editarCelular(celular: Celulares,id:string) {
 

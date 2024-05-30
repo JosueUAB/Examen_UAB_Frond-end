@@ -31,7 +31,7 @@
               </div>
               <div class="col-md-4">
                 <div class="form-group row align-items-center">
-                    <label for="modelo" class="col-sm-4 col-form-label">Metodo de Pago</label>
+                    <label for="modelo" class="col-sm-4 col-form-label">Tipo de Pago</label>
                     <div class="col-sm-6">
                         <select aria-label="Default select example" cSelect id="metododePago" class="form-control"
                           name="metododePago"
@@ -59,60 +59,81 @@
       </form>
       <br>
       <h1 class="text-center">Realizar Venta por IMEI & CI</h1><br>
-      <form action="">
+
+      <form action="" [formGroup]="validarFormularioVentaCIIMEI" id="validarFormularioVentaCIIMEI" >
         <div class="container">
-          <div class="col-12">
+           <div class="col-12">
 
-            <div class="row justify-content-center">
-              <div class="col-md-4">
-                  <div class="form-group row align-items-center">
-                      <label for="marca" class="col-sm-4 col-form-label">IMEI</label>
-                      <div class="col-sm-6">
-                          <input type="text" id="imei" class="form-control">
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                  <div class="form-group row align-items-center">
-                      <label for="modelo" class="col-sm-4 col-form-label">CI</label>
-                      <div class="col-sm-6">
-                          <input type="text" id="CI" class="form-control">
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group row align-items-center">
-                    <label for="modelo" class="col-sm-4 col-form-label">Modelo</label>
-                    <div class="col-sm-6">
-                        <input type="text" id="modelo" class="form-control">
-                    </div>
-                </div>
-            </div>
+             <div class="row justify-content-center">
+               <div class="col-md-4">
+                   <div class="form-group row align-items-center">
+                       <label for="marca" class="col-sm-4 col-form-label">imei</label>
+                       <div class="col-sm-6">
+                        <select aria-label="Default select example" cSelect id="IMEI" class="form-control"
+                          name="IMEI"
+                        formControlName="IMEI"> >
+                          @for (lista of listadeCelulares; track lista){
+                            <option value="{{lista.imei}}">{{lista.marca}} {{lista.modelo}} precio {{lista.precio}} Bs</option>
+                          }
+                        </select>
+                       </div>
 
-          </div>
+                   </div>
+               </div>
+               <div class="col-md-4">
+                   <div class="form-group row align-items-center">
+                       <label for="modelo" class="col-sm-4 col-form-label">CI</label>
+                       <div class="col-sm-6">
+                        <select aria-label="Default select example" cSelect id="CI" class="form-control"
+                          name="CI"
+                        formControlName="CI"> >
+                          @for (lista of listadeClientes; track lista){
+                            <option value="{{lista.CI}}"> CI: {{lista.CI}} {{lista.Nombre}} {{lista.Apellido}}</option>
+                          }
+                        </select>
 
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-4">
+                 <div class="form-group row align-items-center">
+                     <label for="modelo" class="col-sm-4 col-form-label">Tipo de Pago</label>
+                     <div class="col-sm-6">
+                         <select aria-label="Default select example" cSelect id="metododePago" class="form-control"
+                           name="metododePago"
+                         formControlName="metododePago"> >
+                           <option></option>
+                           <option value="efectivo">efectivo</option>
+                           <option value="QR transferencia">QR transferencia</option>
+                           <option value="tarjeta">tarjeta</option>
+                         </select>
+                     </div>
+                 </div>
+             </div>
+             </div>
 
-          </div>
-        </div><br><br>
+           </div>
+           </div>
+         <br><br>
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
-            Realizar Venta
-          </button>
+         <div class="d-grid gap-2 col-6 mx-auto">
+           <button (click)="crearVentaPorCIyIMEI()" type="button" class="btn btn-outline-success btn-outline-isra" shape="rounded-pill"><svg cIcon class="me-2" name="cil-save"></svg>
+             Realizar Venta
+           </button>
 
-        </div>
-      </form>
+         </div>
+       </form>
 
 
 
 
         <br>
-        <h1 class="text-center">lista de Celulares</h1>
+        <h1 class="text-center">lista de Ventas</h1>
         <div class="container ">
-          <div class="row justify-content-center">
-            <div class="col-11">
-              <table [hover]="true" cTable>
-                <thead>
+          <div class="row justify-content-center ">
+            <div class="col-12">
+              <table [hover]="true" cTable >
+                <thead class="thead-dark">
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Nombres</th>
@@ -123,6 +144,8 @@
                   <th scope="col">precio</th>
                   <th scope="col">descuento %</th>
                   <th scope="col">descuento BS</th>
+
+                  <th scope="col">fecha</th>
                   <th scope="col">Tipo de pago</th>
                   <th scope="col">total</th>
                   <th scope="col">acciones</th>
@@ -140,6 +163,7 @@
                       <td>{{lista.celular.precio}} Bs</td>
                       <td>{{lista.celular.descuento}}</td>
                       <td>{{lista.descuentoAplicado}}</td>
+                      <td>{{lista.fecha}}</td>
                       <td>{{lista.metododePago}}</td>
                       <td>{{lista.total}}</td>
                       <td >
@@ -164,4 +188,3 @@
   </c-col>
 
 </c-row>
-

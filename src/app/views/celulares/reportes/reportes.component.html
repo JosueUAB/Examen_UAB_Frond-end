@@ -1,1 +1,163 @@
-<p>reportes works!</p>
+<c-row ngPreserveWhitespaces>
+  <c-col xs="12">
+
+    <c-card class="mb-4">
+      <br>
+
+
+      <br><br>
+
+      <!-- Lista de Top Clientes por Descuentos -->
+      <h1 class="text-center">Top Clientes por Descuentos</h1>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>modelo</th>
+                  <th>imei</th>
+                  <th>total</th>
+                  <th>Descuento</th>
+                  <th>Descuento Bs</th>
+
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+               @for (lista of topClientesDescuentos;track lista; ){
+                <tr>
+                  <th scope="row">{{$index+1}}</th>
+                  <td>{{lista.Nombre}}</td>
+                  <td>{{lista.Apellido}}</td>
+                  <td>{{lista.Modelo}}</td>
+                  <td>{{lista.IMEI}}</td>
+                  <td>{{lista.Total}} .Bs</td>
+                  <td>{{lista.Descuento}}</td>
+                  <th>{{lista.DescuentoAplicado}} .Bs</th>
+
+                  <td>{{lista.Fecha}}</td>
+                </tr>
+               }
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de Clientes Frecuentes -->
+      <h1 class="text-center">Clientes Frecuentes</h1>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>CI</th>
+
+                  <th>Gasto Total</th>
+                  <th>Total Compras</th>
+                  <th>ver Compras</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (r of clientesFrecuentes;track r; ){
+                  <tr>
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{r.clienteInfo.Nombre}}</td>
+                    <td>{{r.clienteInfo.Apellido}}</td>
+                    <td>{{r.clienteInfo.CI}}</td>
+
+                    <td>{{r.gastoTotal}} Bs</td>
+                    <th>{{r.totalCompras}}</th>
+                    <button (click)="getComprasPorUsuario(r.clienteInfo._id)" cButton color="dark" variant="outline" class="btn-outline-isra align-center"
+                    >
+                    <svg cIcon class="me-2" name="cil-magnifying-glass" ></svg>
+                  </button>
+                  </tr>
+                 }
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </c-card>
+  </c-col>
+</c-row>
+
+
+<div #modal class="modal fade" id="modalComprasPorUsuario" tabindex="-1" aria-labelledby="modalComprasPorUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalComprasPorUsuarioLabel">Celulares Comprados por Usuario hgg </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">imei</th>
+              <th scope="col">Color</th>
+              <th scope="col">precio</th>
+              <th scope="col">fecha </th>
+              <th scope="col">descuento</th>
+              <th scope="col">descuento Bs</th>
+              <th scope="col">total Bs</th>
+              <!-- Agrega aquí las otras columnas que deseas mostrar -->
+            </tr>
+            @for (r of celularesCompradosPorUsuario;track r; )
+            {
+              <tr>
+                <th scope="row">{{$index+1}}</th>
+                <td>{{r.celular.marca}}</td>
+                <td>{{r.celular.modelo}}</td>
+                <td>{{r.celular.imei}}</td>
+                <td>{{r.celular.color}}</td>
+                <td>{{r.celular.precio}}</td>
+                <td>{{r.fechaCompra}}</td>
+                <td>{{r.celular.descuento }}</td>
+                <td>{{r.descuentoAplicado}} Bs</td>
+                <td>{{r.celular.totalConDescuento}} Bs</td>
+              </tr>
+
+            }
+            <tr>
+              <th>total</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>{{totalDescuento}} Bs</th>
+              <th>{{totalCompras}} Bs</th>
+
+            </tr>
+
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

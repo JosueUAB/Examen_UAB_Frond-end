@@ -48,4 +48,7 @@ export class InventarioService {
     return this.http.get(`${url}/lista/${id}`);
   }
 
+
+
+
 }

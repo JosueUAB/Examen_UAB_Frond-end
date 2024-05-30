@@ -22,13 +22,19 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "types": ["jquery"], // Agregado
+    "allowSyntheticDefaultImports": true // Movido
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "allowSyntheticDefaultImports": true,
+    "types": ["jquery"]
+
   },
   "files": [],
   "references": [
